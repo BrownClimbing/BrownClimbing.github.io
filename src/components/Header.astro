@@ -1,0 +1,36 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
+
+---
+
+<header>
+  <a href="/" class="home-nav">
+    <Image src={logo} alt="Brown Climbing logo" height=50 width=50 />Brown Climbing
+  </a>
+  <nav>
+    <ul role="list">
+      <li><a href="/events">Events</a></li>
+      <li><a href="/team">Team</a></li>
+      <li><a href="/resources">Resources</a></li>
+    </ul>
+  </nav>
+</header>
+
+<style>
+  header {
+    background-color: var(--clr-neutral-300);
+    display: flex;
+  }
+  .home-nav {
+    display: flex;
+    font-size: var(--fs-subheading);
+  }
+  img {
+    display: inline-block;
+  }
+  ul {
+    display: flex;
+    gap: 15px;
+  }
+</style>
