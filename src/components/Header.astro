@@ -1,37 +1,133 @@
 ---
 import { Image } from 'astro:assets';
 import logo from '../assets/logo.png';
+import iconHamburger from '../assets/icons/icon-hamburger.svg';
+import iconClose from '../assets/icons/icon-close.svg';
 
 ---
 
-<header>
+<header class="container">
   <a href="/" class="home-nav">
     <Image src={logo} alt="Brown Climbing logo" height=50 width=50 />Brown Climbing
   </a>
-  <nav>
-    <ul role="list">
+  <nav id="navigation">
+    <ul role="list" class="nav-list">
       <li><a href="/events">Events</a></li>
       <li><a href="/team">Team</a></li>
       <li><a href="/resources">Resources</a></li>
       <li><a href="/eboard">E-Board</a></li>
     </ul>
   </nav>
+  <button class="mobile-nav-toggle" aria-controls="navigation" aria-expanded="false">
+    <img class="icon-hamburger" src={iconHamburger.src} alt="" aria-hidden="true">
+    <img hidden class="icon-close" src={iconClose.src} alt="" aria-hidden="true">
+    <span class="visually-hidden">Menu</span>
+  </button>
 </header>
 
 <style>
   header {
-    background-color: var(--clr-neutral-300);
+    background-color: var(--clr-neutral-500);
     display: flex;
+    padding: 1rem 1rem 0.25rem;
   }
+
+  a {
+    text-decoration: none;
+    color: var(--clr-primary-400);
+    font-weight: var(--fw-semi-bold);
+  }
+
   .home-nav {
     display: flex;
     font-size: var(--fs-subheading);
+    color: var(--clr-neutral-100);
   }
-  img {
-    display: inline-block;
+
+  .mobile-nav-toggle {
+    display: none;
   }
-  ul {
+
+  nav {
+    margin-top: 0.6rem;
+  }
+
+  .nav-list {
     display: flex;
-    gap: 15px;
+    gap: 2.5rem;
+    /* margin-top: auto; */
   }
+  
+  .nav-list a:hover,
+  .nav-list a:focus {
+    color: var(--clr-accent-500);
+  }
+
+
+  /* On small screen sizes, use nav hamburger toggle */
+  @media (max-width: 50em) {
+    header {
+      justify-content: space-between;
+    }
+    nav {
+      display: none;
+      position: absolute;
+      inset: 3.75rem 1rem auto;
+      background: var(--clr-neutral-300);
+      border-radius: 0rem 0rem 0.25rem 0.25rem;
+      padding: 1.5rem;
+      box-shadow: 0 .4em .5em rgb(0, 0, 0, 0.15);
+    }
+
+    /* dropshadow */
+    nav::after {
+      content: '';
+      position: absolute;
+    }
+
+    /* Toggles whether the menu is visible based on the prescence of data-visible attribute */
+    nav[data-visible] {
+      display: block;
+    }
+
+    .nav-list {
+      display: grid;
+      gap: 1.5rem;
+      text-align: center;
+      font-weight: var(--fw-bold);
+    }
+
+    .mobile-nav-toggle {
+      display: block;
+      cursor: pointer;
+      background: transparent;
+      border: 0;
+      padding: 0.5em;
+    }
+    .icon-close[hidden] {
+      display: none;
+    }
+    .icon-hamburger[hidden] {
+      display: none;
+    }
+  }
+  
 </style>
+
+<script>
+  const navToggle = document.querySelector('.mobile-nav-toggle');
+  const nav = document.querySelector('nav');
+
+  navToggle?.addEventListener('click', () => {
+    nav?.toggleAttribute('data-visible');
+    if (nav?.hasAttribute('data-visible')) {
+      navToggle.setAttribute('aria-expanded', 'true');
+    } else {
+      navToggle.setAttribute('aria-expanded', 'false');
+    }
+
+    // Switch the visibility of the hamburger and the close icons
+    document.querySelector('.icon-hamburger')?.toggleAttribute('hidden');
+    document.querySelector('.icon-close')?.toggleAttribute('hidden');
+  })
+</script>
