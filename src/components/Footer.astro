@@ -1,6 +1,12 @@
+---
+import instaIcon from '../assets/icons/icon-instagram.svg'
+---
+
 <footer>
   <p>Contact Us (placeholder)</p>
-  <a aria-label="instagram" href="https://www.instagram.com/brownclimbing/">insta</a>
+  <a aria-label="instagram" href="https://www.instagram.com/brownclimbing/">
+  <img src={instaIcon.src} />
+  </a>
 </footer>
 
 <style>
@@ -9,5 +15,11 @@
     color: var(--clr-neutral-100);
     display: flex;
     justify-content: center;
+    gap: 1rem;
+}
+
+  a {
+    margin-top: auto;
+    margin-bottom: auto;
   }
 </style>
