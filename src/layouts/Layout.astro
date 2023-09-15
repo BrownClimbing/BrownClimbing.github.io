@@ -4,17 +4,18 @@ import "../styles/global.css";
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 interface Props {
-	title: string;
+	title?: string;
+	description?: string;
 }
 
-const { title } = Astro.props;
+const { title = 'Brown Climbing Club', description = '' } = Astro.props;
 ---
 
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<!-- <meta name="description" content="Astro description"> -->
+		<meta name="description" content={description}>
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg" href="/brownclimbingclub.com/logo.svg" />
 		<meta name="color-scheme" content="lightdark" />

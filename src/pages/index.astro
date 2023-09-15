@@ -3,18 +3,19 @@ import { Image } from 'astro:assets';
 import logo from '../assets/logo.png';
 import Layout from '../layouts/Layout.astro';
 import Calendar from '../components/Calendar.astro';
+
+const clubDescription = `Brown Climbing is a community built around the love of all disciplines of climbing (bouldering, top rope, lead, and speed). We aim to provide recreational climbers with greater opportunities to travel to local gyms through shared transportation.
+We also provide opportunities for competitive climbers to compete on the USA Collegiate Climbing circuit through our competitive team. In addition, Brown Climbing will create a supportive space where members can improve their strength and technique in all disciplines. Finally, Brown Climbing aims to spread awareness of rock climbing on campus to new climbers and increase the overall accessibility of climbing to all Brown students.`;
 ---
-<Layout title='Brown Climbing Club'>
+
+<Layout title='Brown Climbing Club' description={clubDescription}>
   <main class="container">
     <Image src={logo} alt="Brown Climbing Club's logo" width=192 height=192 />
     <h1>
       Brown Climbing
     </h1>
     
-    <p class="container">
-      Brown Climbing is a community built around the love of all disciplines of climbing (bouldering, top rope, lead, and speed). We aim to provide recreational climbers with greater opportunities to travel to local gyms through shared transportation.
-      We also provide opportunities for competitive climbers to compete on the USA Collegiate Climbing circuit through our competitive team. In addition, Brown Climbing will create a supportive space where members can improve their strength and technique in all disciplines. Finally, Brown Climbing aims to spread awareness of rock climbing on campus to new climbers and increase the overall accessibility of climbing to all Brown students.
-    </p>
+    <p class="container">{clubDescription}</p>
     
     <section>
       <h2>Upcoming events</h2>
