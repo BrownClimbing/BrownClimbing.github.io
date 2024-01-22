@@ -1,0 +1,27 @@
+---
+import type { CollectionEntry } from 'astro:content';
+interface Props {
+  event: CollectionEntry<'events'>;
+}
+
+const { event } = Astro.props;
+const { Content } = await event.render();
+---
+
+<div>
+  <h2>{event.data.name}</h2>
+  <h4>{event.data.date}</h4>
+  <Content />
+</div>
+
+<style>
+  div {
+    background-color: var(--clr-neutral-100);
+    padding: 1em;
+    margin: 1em 0;
+  }
+  h4 {
+    font-weight: var(--clr-semi-bold);
+    color: var(--clr-neutral-600);
+  }
+</style>
